@@ -1,0 +1,137 @@
+% bmc_article.bib
+% 
+%  An example of bibtex entries.
+%  Entries taken from BMC instructions for authors page.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                  The Bibliography                       %%
+%%                                                         %%
+%%  Bmc_mathpys.bst  will be used to                       %%
+%%  create a .BBL file for submission.                     %%
+%%  After submission of the .TEX file,                     %%
+%%  you will be prompted to submit your .BBL file.         %%
+%%                                                         %%
+%%                                                         %%
+%%  Note that the displayed Bibliography will not          %%
+%%  necessarily be rendered by Latex exactly as specified  %%
+%%  in the online Instructions for Authors.                %%
+%%                                                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% if your bibliography is in bibtex format, use those commands:
+\bibliographystyle{bmc-mathphys} % Style BST file (bmc-mathphys, vancouver, spbasic).
+\bibliography{bmc_article}      % Bibliography file (usually '*.bib' )
+% for author-year bibliography (bmc-mathphys or spbasic)
+% a) write to bib file (bmc-mathphys only)
+ @settings{label, options="nameyear"}
+% b) uncomment next line
+%\nocite{label}
+
+% or include bibliography directly:
+\begin{thebibliography}
+\bibitem{b1}
+% Article within a journal
+@article{moshiri2018favites,
+	title   = {FAVITES: simultaneous simulation of transmission networks, phylogenetic trees and sequences},
+	author  = {Moshiri, Niema and Ragonnet-Cronin, Manon and Wertheim, Joel O and Mirarab, Siavash},
+	journal = {Bioinformatics}, 
+	year  = {2018},
+	  month = {June}, 
+	  volume= {35}, 
+	  number= {11}, 
+	  pages = {1852--1861},
+      note  = {} 
+}	
+
+%Article within a pre-print journal
+@article{moshiri2019ProACT,
+title = {HIV Care Prioritization using Phylogenetic Branch Length},
+author = {Moshiri, Niema and Smith, Davey M. and Mirarab Siavash},
+journal = {bioRxiv},
+year = {2019},
+month = {December},
+volume={},
+number={},
+pages={},
+}
+
+% Article within a journal
+@article{ratmann2016phylogenetic,
+  title = {Phylogenetic tools for generalized HIV-1 epidemics: Findings from the PANGEA-HIV methods comparison},
+  author = {Ratmann, Oliver and Hodcroft, Emma B and Pickles, Michael and Cori, Anne and Hall, Matthew and Lycett, Samantha and Colijn, Caroline and Dearlove, Bethany and Didelot, Xavier and Frost, Simon and others},
+  journal = {Molecular Biology and Evolution},
+  volume = {34},
+  number = {1},
+  pages = {185--203},
+  year = {2016},
+  publisher = {Oxford University Press}
+}
+
+% Article within a journal
+@article{wertheim2018growth,
+  title = {Growth of HIV-1 molecular transmission clusters in New York city},
+  author = {Wertheim, Joel O and Murrell, Ben and Mehta, Sanjay R and Forgione, Lisa A and Kosakovsky Pond, Sergei L and Smith, Davey M and Torian, Lucia V},
+  journal = {The Journal of infectious diseases},
+  volume = {218},
+  number = {12},
+  pages = {1943--1953},
+  year = {2018},
+  publisher = {Oxford University Press US}
+}
+
+% Article within a journal
+@article{kendall1938new,
+  title = {A new measure of rank correlation},
+  author = {Kendall, Maurice G},
+  journal = {Biometrika},
+  volume = {30},
+  number = {1/2},
+  pages = {81--93},
+  year = {1938},
+  publisher = {JSTOR}
+}
+
+% Article within a journal
+@article{tamura1993estimation,
+  title = {Estimation of the number of nucleotide substitutions in the control region of mitochondrial DNA in humans and chimpanzees.},
+  author = {Tamura, Koichiro and Nei, Masatoshi},
+  journal = {Molecular biology and evolution},
+  volume = {10},
+  number = {3},
+  pages = {512--526},
+  year = {1993}
+}
+
+
+%
+% these are some misc. things Vignesh originally wanted us to cite within our introduction
+% these are just here in case we do need to cite them
+%
+
+%MISC
+@MISC{cdc1,
+author = "U.S. Department of Health and Human Services",
+title = "Basic Statistics",
+year = "2019-11",
+howpublished = "https://www.cdc.gov/hiv/basics/statistics.html"
+}
+
+%MISC
+@MISC{cdc2,
+author = "U.S. Department of Health and Human Services",
+title = "Prevention",
+year = "2019-12",
+howpublished = "https://www.cdc.gov/hiv/basics/prevention.html"
+}
+
+%MISC
+@MISC{who,
+author = "World Health Organization",
+title = "Summary of the global HIV epidemic (2019)",
+year = "2020",
+howpublished = "https://www.who.int/hiv/data/"
+}
+\end{thebibliography}
+
