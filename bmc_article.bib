@@ -25,13 +25,14 @@
 \bibliography{bmc_article}      % Bibliography file (usually '*.bib' )
 % for author-year bibliography (bmc-mathphys or spbasic)
 % a) write to bib file (bmc-mathphys only)
- @settings{label, options="nameyear"}
+% @settings{label, options="nameyear"}
 % b) uncomment next line
 %\nocite{label}
 
 % or include bibliography directly:
 \begin{thebibliography}
 \bibitem{b1}
+
 % Article within a journal
 @article{moshiri2018favites,
 	title   = {FAVITES: simultaneous simulation of transmission networks, phylogenetic trees and sequences},
@@ -49,11 +50,11 @@
 @article{moshiri2019ProACT,
 title = {HIV Care Prioritization using Phylogenetic Branch Length},
 author = {Moshiri, Niema and Smith, Davey M. and Mirarab Siavash},
-journal = {bioRxiv},
-year = {2019},
+journal = {Journal of AIDS},
+year = {2020},
 month = {December},
 volume={},
-number={},
+number={In Press},
 pages={},
 }
 
@@ -79,6 +80,17 @@ pages={},
   pages = {1943--1953},
   year = {2018},
   publisher = {Oxford University Press US}
+}
+
+% Article within a journal
+@article{pond2018hivtrace,
+  title = {HIV-TRACE (TRAnsmission Cluster Engine): a Tool for Large Scale Molecular Epidemiology of HIV-1 and Other Rapidly Evolving Pathogens},
+  author = {Pond, Sergei L Kosakovsky and Weaver, Steven and Brown, Andrew J Leigh and Wertheim, Joel O},
+  journal = {Molecular Biology and Evolution},
+  volume = {35},
+  number = {7},
+  pages = {1812--1819},
+  year = {2018},
 }
 
 % Article within a journal
@@ -112,7 +124,7 @@ pages={},
 
 %MISC
 @MISC{cdc1,
-author = "U.S. Department of Health and Human Services",
+author = "CDC",
 title = "Basic Statistics",
 year = "2019-11",
 howpublished = "https://www.cdc.gov/hiv/basics/statistics.html"
@@ -120,7 +132,7 @@ howpublished = "https://www.cdc.gov/hiv/basics/statistics.html"
 
 %MISC
 @MISC{cdc2,
-author = "U.S. Department of Health and Human Services",
+author = "CDC",
 title = "Prevention",
 year = "2019-12",
 howpublished = "https://www.cdc.gov/hiv/basics/prevention.html"
@@ -128,7 +140,7 @@ howpublished = "https://www.cdc.gov/hiv/basics/prevention.html"
 
 %MISC
 @MISC{who,
-author = "World Health Organization",
+author = "WHO",
 title = "Summary of the global HIV epidemic (2019)",
 year = "2020",
 howpublished = "https://www.who.int/hiv/data/"
