@@ -141,7 +141,7 @@
 \author[
    %addressref={aff1},
    %noteref={n1},
-   email={a1moshir@ucsd.edu}
+   email={niema@ucsd.edu}
 ]{\inits{NM}\fnm{Niema} \snm{Moshiri}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                          %%
@@ -192,14 +192,20 @@
 
 \begin{abstract} % abstract
 \parttitle{Background}
-The ability to prioritize people living with HIV by risk of future transmissions could aid public health officials in optimizing epidemiological intervention. While methods exist to perform such prioritization based on molecular data, their effectiveness and accuracy are poorly understood, and it is unclear how one can directly compare the accuracy of different methods. We introduce SEPIA (Simulation-based Evaluation of PrIoritization Algorithms), a novel simulation-based framework for determining the effectiveness of prioritization algorithms. Under several metrics of effectiveness that we propose, we utilize various properties of the simulated contact networks and transmission histories to compare existing prioritization approaches: one phylogenetic (ProACT) and one distance-based (growth of HIV-TRACE transmission clusters).
+The ability to prioritize people living with HIV by risk of future transmissions could aid public health officials in optimizing epidemiological intervention. While methods exist to perform such prioritization based on molecular data, their effectiveness and accuracy are poorly understood, and it is unclear how one can directly compare the accuracy of different methods. We introduce SEPIA (Simulation-based Evaluation of PrIoritization Algorithms), a novel simulation-based framework for determining the effectiveness of prioritization algorithms.
+SEPIA expands on prior related work
+%in simulation-based comparisons of HIV care prioritization techniques
+by defining novel metrics of effectiveness with which to compare prioritization techniques as well as by creating a simulation-based tool with which to perform such effectiveness comparisons.
+Under several metrics of effectiveness that we propose, we
+%utilize various properties of the simulated contact networks and transmission histories to
+compare two existing prioritization approaches: one phylogenetic (ProACT) and one distance-based (growth of HIV-TRACE transmission clusters).
 %We use FAVITES, an epidemic simulation tool, to generate this simulated data.
 %We personally used SEPIA to analyze the results of both distance-based and phylogenetic prioritization methods.
 
 \parttitle{Results}
 %Text for this section.
 %Upon testing SEPIA on two different prioritization algorithms, ProACT (phylogenetic-based) and HIV-Trace (distance-based), we found that,
-Using all metrics of effectiveness that we propose, ProACT consistently slightly outperformed the transmission cluster growth approach. However, both methods consistently performed just marginally better than random, suggesting that there is significant room for improvement in prioritization tools.
+Using all proposed metrics, ProACT consistently slightly outperformed the transmission cluster growth approach. However, both methods consistently performed just marginally better than random, suggesting that there is significant room for improvement in prioritization tools.
 
 \parttitle{Conclusion}
 We hope that, by providing ways to quantify the effectiveness of prioritization methods in simulation, SEPIA will aid researchers in developing novel tools for prioritizing people living with HIV by risk of future transmissions.
@@ -269,14 +275,14 @@ We hope that, by providing ways to quantify the effectiveness of prioritization 
 
 \section*{Background}
 %Human immunodeficiency virus (HIV) is one of the world's most deadly infectious diseases, significantly impacting regions including sub-Saharan Africa, Asia, the Pacific, and Latin America \cite{cdc1}. In 2019, there were 38.0 million people living with HIV globally, with 1.7 million people newly infected and 690,000 HIV-related deaths \cite{who}. 
-Molecular data gathered on human immunodeficiency virus (HIV) is useful for understanding the systems of epidemic spread of HIV. Such understanding can better allow us to intervene and treat high-risk groups of individuals. Methods of epidemic intervention include treatments such as antiretroviral therapy (ART) and awareness programs \cite{cdc2}. When people living with HIV adhere to ART, they may experience viral suppression, which results in a significantly reduced risk of transmission. Thus, ART distribution and adherence is a potentially effective approach to combating the spread of HIV. However, a major issue for public health officials is the limited amount of resources available. Because of this, officials need to ensure that their limited resources are  allocated optimally to best reduce the spread of an epidemic.
+Molecular data gathered on human immunodeficiency virus (HIV) is useful for understanding the systems of epidemic spread of HIV. Such understanding can better allow us to intervene and treat high-risk groups of individuals. Methods of epidemic intervention include treatments such as antiretroviral therapy (ART) and awareness programs \cite{cdc2}. Adherence to ART can cause viral suppression in people living with HIV and significantly reduce their risk of transmission, making ART distribution a potentially effective approach to combating the spread of HIV. However, a major issue for public health officials is the limited amount of resources available and how to allocate them. 
 %Thus, they need to turn to tools that determine which high-risk individuals they ought to prioritize.
 %Given the scale of this epidemic and the difficulties in tracing viral transmissions, however, there are limited resources available, and these limited resources need to be allocated effectively. The deployment of these can be optimized using tools that evaluate the transmission of HIV and determine which individuals are most at risk. \cite{wertheim2018growth}.
 
 % is "specific mutated variant of HIV" correct terminology?
 %Analyses of viral sequences are often used to track the evolution and spread of the virus, with each genetic sample representing a specific mutated variant of HIV in an HIV-positive individual \cite{wertheim2018growth}. These viral sequences are usually taken from individuals starting ART and seeking treatment at medical facilities.
-In many parts of the world, when testing and treating individuals living with HIV, it has become standard practice to record various pieces of metadata about the patient, including a viral genomic sequence (often of the \textit{pol} and \textit{gag} regions). This information is often used to determine groups of individuals with a high risk of future transmission, which can allow public health officials to better allocate their limited resources \cite{wertheim2018growth}. 
-The prioritization of people living with HIV can be explored in a computational framework: given a list of individuals along with metadata and a viral sequence from each individual, order the individuals in descending order of inferred risk of future transmission.
+In many parts of the world, when testing and treating individuals living with HIV, it has become standard practice to record various metadata on the patients, including viral genomic sequences (often of the \textit{pol} and \textit{gag} regions). This information is often used to determine groups of individuals with high risk of future transmission, which can help public health officials to better allocate limited resources \cite{wertheim2018growth}. 
+The prioritization of people living with HIV can be explored through a computational framework: given a list of individuals along with metadata and viral sequences, order the individuals in descending order of inferred risk of future transmission.
 %Researchers have developed tools that each take in a list of such sequences and output a ranking that prioritizes individuals based on each individual's relative risk of transmitting HIV to others. With inferred data from these tools, healthcare officials can better determine where to direct epidemiological intervention and limited resources \cite{wertheim2018growth}.
 
 Molecular epidemiology provides a natural framework for prioritizing individuals from viral sequence data. Currently, the standard approach is to use HIV-TRACE \cite{pond2018hivtrace} to infer transmission clusters based on pairwise distances between sequences, monitor the growth of the transmission clusters over time, and prioritize individuals in descending order of transmission cluster growth. ProACT \cite{moshiri2019ProACT}, on the other hand, is a prioritization approach that utilizes properties of a phylogeny inferred from the viral sequences.
@@ -284,7 +290,13 @@ Molecular epidemiology provides a natural framework for prioritizing individuals
 The following questions naturally arise: how well does a given prioritization method perform, and which method is superior in specific contexts? With real-world data, the ground truth of who transmitted to whom is typically unavailable or error-prone. Further, even \textit{with} a known transmission history, it is unclear how to quantify effectiveness: do we count the number of transmissions from a single individual? Do we count the total number of transmissions in a transmission chain seeded from a single individual? Rather than the transmission network itself, perhaps we are interested in properties of the underlying contact network (e.g. prioritize individuals with large numbers of social contacts)? Thus, it is unclear how to even quantitatively assess the performance of different prioritization methods.
 
 % short summary of sepia, details of how it works in detail should be elsewhere  in the methods section if at all, reword for better grammar
-To address this open problem, we introduce SEPIA (Simulation-based Evaluation of PrIoritization Algorithms), a novel simulation-based framework for measuring the effectiveness of prioritization algorithms. SEPIA utilizes simulated epidemic data, such as those generated by FAVITES \cite{moshiri2018favites} or PANGEA.HIV.sim \cite{ratmann2016phylogenetic}, to define a ground truth with which prioritization methods can be directly compared. The user runs their prioritization method on a simulated dataset, and then given the prioritization as well as the simulated dataset, SEPIA will measure the effectiveness of the prioritization using any of the metrics defined below.
+To address this open problem, we introduce SEPIA (Simulation-based Evaluation of PrIoritization Algorithms), a novel simulation-based framework for measuring the effectiveness of prioritization algorithms.
+Previously, in Moshiri \textit{et al.} (2021)~\cite{moshiri2019ProACT}, two prioritization algorithms were compared with respect to effectiveness, but the comparisons were limited to a simulated epidemic dataset modeling the San Diego HIV epidemic between 2005 and 2014.
+Like this prior work, SEPIA utilizes simulated epidemic data, such as those generated by FAVITES \cite{moshiri2018favites} or PANGEA.HIV.sim \cite{ratmann2016phylogenetic}, to define a ground truth with which prioritization methods can be directly compared.
+However, SEPIA expands on this prior work by generalizing the task of prioritization effectiveness comparison and further exploring the mathematical meaning of ``effectiveness'' by defining 6 metrics of effectiveness, each inspired by properties of epidemics that are inherently of interest to public health officials for intervention.
+Specifically,
+the user runs a prioritization method on a simulated dataset;
+then, given the prioritization and the simulated dataset, SEPIA will measure the effectiveness of the prioritization using the metrics defined below.
 %The results produced by SEPIA can then be used to characterize the performance of a single prioritization approach on different epidemic scenarios (represented by different simulated data sets) as well as to directly compare the performance of multiple prioritization approaches. 
 
 %SEPIA will take two different sets of data for its input. The first input will be the prioritization results ran on simulated data and the  second input will be the simulated data gathered from FAVITES. The first thing SEPIA will do is assign a priority value based off the simulated data. This priority value will then be given a rank determined from the metric that was used. Each person in the data will have a priority value and this value becomes a rank on how much each person should be prioritized. This rank gets compared to the algorithms ordering on how will it prioritizes each person. This comparison is done with the Kendall Tau calculation. When compared SEPIA will output a coefficient between the ranked values and the algorithms ordering.%
@@ -303,10 +315,10 @@ Specifically, for each individual \textit{u}, we produce a step function represe
 %------FIGURE 1
 \begin{figure}[h!]
 \centering
-\includegraphics[scale=0.17]{Figures/SEPIA Best-Fit line.png}
+\includegraphics[width=0.45\textwidth]{Figures/Fig1.pdf}
 \caption{
-\newline
-Metric 2. The horizontal axis represents time, and the vertical axis represents the individual's number of transmissions. Because Person B has transmitted to more individuals more recently than has Person A, the regression line of Person B has a larger slope.
+\newline 
+Metric 2. Because Person B has transmitted to more individuals more recently than has Person A, the regression line of Person B has a larger slope.
 }
 \end{figure}
 
@@ -338,8 +350,8 @@ Metric 2. The horizontal axis represents time, and the vertical axis represents 
 %figure 2
 \begin{figure}[!h]
 \centering
-\includegraphics[scale=0.34]{Figures/SEPIA workflow.png}
-\caption{Flowchart of the stages of the SEPIA workflow. The first two boxes indicate SEPIA's two required inputs: the simulated data and a prioritization of the individuals in the simulated data. In Steps 1 and 2, each individual in the prioritization is paired with a count value, calculated by observing a selected observation (metric) in the simulated data. In Step 3, we calculate the Kendall Tau-b correlation coefficient between these count values and the theoretically optimal ordering of count values.}
+\includegraphics[width=0.45\textwidth]{Figures/Fig2.pdf}
+\caption{Flowchart of the different stages of the SEPIA workflow. The first two boxes indicate SEPIA's two required Inputs: the simulated data and a prioritization of the individuals in the simulated data. In Steps 1 and 2, each individual in the prioritization is paired with a count value, calculated by a selected metric in the simulated data. In Step 3, we calculate the Kendall Tau-b correlation coefficient, our Output, between these count values and the theoretically optimal ordering of count values.}
 \end{figure}
 
 Given a prioritization and the simulated data from which the prioritization was produced, for a given selected metric, SEPIA will compute a value for each individual in the prioritization (Fig. 2). Given a prioritization with a computed metric value for each individual, SEPIA then constructs an ``optimal'' prioritization by simply sorting the individuals in descending order of metric value. To compare the user-given prioritization against the optimal, SEPIA computes the Kendall Tau-b rank correlation coefficient \cite{kendall1938new}.
@@ -408,9 +420,12 @@ We used SEPIA to compare the effectiveness of two molecular epidemiological prio
 \section*{Results}
 %We tested SEPIA on two algorithms, HIV-Trace and ProACT, which have different approaches to determining individual priorities \cite{wertheim2018growth, moshiri2019ProACT}. (\textit{Figure 5}) shows the combined results of all 6 metrics. These figures show the results of running ProACT and HIV-Trace on SEPIA using simulated data from FAVITES many different data sets under different conditions. 
 %TODO
+
 As can be seen in Figure 3, ProACT consistently outperformed HIV-TRACE transmission cluster growth using all metrics on all simulation conditions. However, both tools consistently had Tau-b scores marginally higher than 0, implying that they are performing only marginally better than a random ordering.
 % Explain what happens as Ed, lamda_, and lambda+ changes
 As the rate of starting ART $\left(\lambda_+\right)$ increases, the rate of stopping ART $\left(\lambda_-\right)$ increases, and the expected degree $\left(E_d\right)$ increases (i.e., as the outbreak spreads more quickly), ProACT's performance with respect to metrics 5 and 6 seems to increase slightly. Otherwise, both ProACT and HIV-TRACE transmission cluster growth seem to perform fairly consistently across experimental conditions.
+
+
 %As more people stop adhering to ART $\left(\lambda_-\right)$,
 %Pro. On the other hand, HIV-Trace's ordering does not show such an increase in the positive correlation with the optimal ordering, showing a decreased positive correlation with larger values of $\lambda_-$. The difference in performance between HIV-Trace and ProACT is most pronounced for $\lambda_-$ when $\lambda_-= 4x$, where the correlation difference between HIV-Trace and ProACT is the greatest.
 
@@ -430,8 +445,6 @@ Across all defined metrics and all considered simulation conditions, ProACT cons
 It must be noted that, while we aimed to provide generalized results by varying key simulation parameters, the simulated epidemics are specifically modeled after the HIV epidemic in San Diego. Molecular epidemiologists will need to assess prioritization techniques using simulated datasets representative of the pathogens and communities in which they are interested.
 
 We hope that SEPIA will enable researchers to quantify and assess the effectiveness of different prioritization approaches in order to select the best existing prioritization method for their communities, develop new prioritization methods that improve upon existing ones, and, ultimately, maximize the impact of the limited resources available to public health officials.
-
-
 % \begin{figure}[h!]  %Figure 6
 % \centering
 % \title\textbf{Metric 1}\par\medskip
@@ -475,13 +488,11 @@ We hope that SEPIA will enable researchers to quantify and assess the effectiven
 % \end{figure}
 
 
-\begin{figure*}[p!]  %Figure 5
+\begin{figure*}[p!]  %Figure 3
 \centering
-\title\textbf{Metric Results On ProACT and HIV-Trace}\par\medskip
-\includegraphics[scale=.515]{Figures/6 Metric Format.jpg}
-\caption{
-\newline
-Efficacy of ProACT and HIV-TRACE across all metrics on datasets simulated using FAVITES. The violin plots depict the Kendall Tau-b correlation coefficients between experimental and optimal orderings across 20 replicates for each experimental condition, where $E_d$ denotes the expected number of contacts per individual, $\lambda_+$ denotes the rate at which individuals begin ART, $\lambda_-$ denotes the rate at which individuals stop ART.
+\title\par\medskip
+\includegraphics[width=0.95\textwidth]{Figures/Fig3.pdf}
+\caption{Efficacy of ProACT and HIV-TRACE across all metrics on datasets simulated by FAVITES. The violin plots depict the Kendall Tau-b correlation coefficients between experimental and optimal orderings across 20 replicates for each experimental condition. The experimental conditions are varied by altering 3 parameters, where $E_d$ denotes the expected number of contacts per individual, $\lambda_+$ denotes the rate at which individuals begin ART, and $\lambda_-$ denotes the rate at which individuals stop ART.
 } 
 \end{figure*}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -496,7 +507,7 @@ Efficacy of ProACT and HIV-TRACE across all metrics on datasets simulated using 
   The authors declare that they have no competing interests.
 
 \section*{Author's contributions}
-    NM conceived and directed this project. All members wrote the code for this project. KA, TJ, ML, TN and MS composed this manuscript.
+    NM conceived and directed this project. All members wrote the code for this project. KA, TJ, ML, TN, MS and NM composed this manuscript.
     
 \section*{Acknowledgements}
  We would like to acknowledge the Early Research Scholars Program organized by Professor Christine Alvarado and Vignesh Gokul at the University of California, San Diego for granting us this opportunity.
